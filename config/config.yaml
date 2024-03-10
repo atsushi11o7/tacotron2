@@ -1,0 +1,47 @@
+
+model:
+  Encoder:
+    num_conv: 3
+    #conv_channels: 512  # same as symbols_embedding_dim
+    conv_kernel_size: 5
+    hidden_dim: 512
+    dropout: 0.5
+
+  Attention:
+    #encoder_dim: 512  # same as Encoder.hidden_dim
+    #decoder_rnn_dim: 1024  # same as Decoder.rnn_hidden_dim
+    hidden_dim: 128
+    conv_channels: 32
+    conv_kernel_size: 31
+
+  Prenet:
+    #decoder_output_dim: 80  # equal num_mel_channels * num_frames_per_step
+    num_layers: 2
+    hidden_dim: 256
+    dropout: 0.5
+
+  Decoder:
+    num_mel_channels: 80
+    num_frames_per_step: 1
+    #encoder_dim: 512  # same as Encoder.hidden_dim
+    rnn_hidden_dim: 1024
+    #attention_hidden_dim: 128  # same as Attention.hidden_dim
+    #attention_conv_channels: 32  # same as Attention.conv_channels
+    #attention_conv_kernel_size: 31  # same as Attention.conv_kernel_size
+    #prenet_num_layers: 2  # same as Prenet.num_layers
+    #prenet_hidden_dim: 256  # same as Prenet.hidden_dim
+    #prenet_dropout: 0.5  # same as Prenet.dropout
+    max_decoder_steps: 1000
+    gate_threshold: 0.5
+    dropout: 0.1
+
+  Postnet:
+    num_layers: 5
+    #num_mel_channels: 80  # same as Decoder.num_mel_channels
+    conv_channels: 512
+    conv_kernel_size: 5
+    dropout: 0.5
+
+  Tacotron2:
+    num_symbols: 66
+    symbols_embedding_dim: 512
